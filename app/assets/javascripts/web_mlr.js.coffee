@@ -1,9 +1,11 @@
-window.WebMlr =
+window.MLR =
   Models: {}
   Collections: {}
   Views: {}
   Routers: {}
-  initialize: -> alert 'Hello from Backbone!'
+  initialize: ->
+    new MLR.Routers.AppRouter()
+    Backbone.history.start()
 
 $(document).ready ->
-  WebMlr.initialize()
+  MLR.initialize()
