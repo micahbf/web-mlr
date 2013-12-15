@@ -4,7 +4,6 @@ class MLR.Views.LoopView extends Backbone.View
     "click #stop-1": "loopStop"
 
   loopStart: ->
-    console.log "start"
     @model.loopStart()
 
   loopStop: ->
