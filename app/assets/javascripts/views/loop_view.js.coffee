@@ -20,5 +20,5 @@ class MLR.Views.LoopView extends Backbone.View
     window.clearInterval(@trackingIntervalID)
 
   updatePosition: ->
-    posPct = Math.round(@model.relativePosition() * 100)
+    posPct = (@model.relativePosition() * 100).toFixed(2)
     @$el.find("#position").css("width", "#{posPct}%")
