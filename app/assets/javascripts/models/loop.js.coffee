@@ -2,6 +2,7 @@ class MLR.Models.Loop extends Backbone.Model
   initialize: ->
     @audio_url = "/loops/#{@id}.wav"
     @audio_buffer = null
+    @context = MLR.audio.context
     @loadSound()
 
   loadSound: ->
