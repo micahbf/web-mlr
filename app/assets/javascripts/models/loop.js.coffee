@@ -23,10 +23,35 @@ class MLR.Models.Loop extends Backbone.Model
     request.send()
 
   loopStart: ->
+    @_startPlaying(0)
+
+  loopStop: ->
+    @_stopPlaying()
+
+  position: ->
+    return null unless @playing
+    (@context.currentTime - @startTime) % @duration
+
+  relativePosition: ->
+    @position() / @duration
+
+  _initializeSource: ->
     @source = @context.createBufferSource()
     @source.buffer = @audio_buffer
     @source.connect @context.destination
-    @source.start 0
+    @source.loop = true
 
-  loopStop: ->
+  _startPlaying: (position) ->
+    @_initializeSource()
+    @source.start position
+    @startTime = @context.currentTime
+    @playing = true
+    @trigger("start")
+
+  _stopPlaying: ->
     @source.stop 0
+    @playing = false
+    @startTime = null
+    @trigger("stop")
+
+
