@@ -13,12 +13,16 @@ class MLR.Models.Loop extends Backbone.Model
     request.onload = =>
       MLR.audio.context.decodeAudioData(request.response,
         ((buffer) =>
-          @audio_buffer = buffer
-          console.log("buffer loaded")),
-        onError)
+          @audio_buffer = buffer),
+        -> (console.log("error loading audio buffer")))
 
     request.send()
 
-
   loopStart: ->
-    MLR.audio.playSound(@audio_buffer)
+    @source = @context.createBufferSource()
+    @source.buffer = @audio_buffer
+    @source.connect @context.destination
+    @source.start 0
+
+  loopStop: ->
+    @source.stop 0
