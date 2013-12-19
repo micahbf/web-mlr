@@ -3,6 +3,10 @@ window.MLR =
   Collections: {}
   Views: {}
   Routers: {}
+
+  settings:
+    posBarUpdateInterval: 30
+  
   initialize: ->
     @audio = new MLR.Audio
     MLR.audio.initializeContext()
