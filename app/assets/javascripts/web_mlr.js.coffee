@@ -3,8 +3,8 @@ window.MLR =
   Collections: {}
   Views: {}
   Routers: {}
-  audio: new MLR.Audio()
   initialize: ->
+    @audio = new MLR.Audio
     MLR.audio.initializeContext()
     new MLR.Routers.AppRouter()
     Backbone.history.start()
