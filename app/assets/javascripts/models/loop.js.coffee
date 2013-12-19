@@ -4,6 +4,9 @@ class MLR.Models.Loop extends Backbone.Model
     @audio_buffer = null
     @context = MLR.audio.context
     @loadSound()
+    @duration = null
+    @startTime = null
+    @playing = false
 
   loadSound: ->
     request = new XMLHttpRequest();
